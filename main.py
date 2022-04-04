@@ -16,6 +16,7 @@ from googletrans import Translator
 def assistant_voix(sortie):
     if sortie!=None:
         voix=pyttsx3.init()
+        voix.setProperty('voice',"french")
         print("A.I : "+sortie)
         voix.say(sortie)
         voix.runAndWait()
@@ -124,4 +125,32 @@ def sur_le_net(entree):
                     assistant_voix("Recherche sur Google")
                     webbrowser.open("http://www.google.com/search?q="+"+".join(recherche),new=2)
 
+
+def main():
+    assistant_voix("Bonjour monsieur, je suis votre assistant de Bureau.Dites- moi ce que je peux faires pour vous")
+    fermer=["arretes-toi","tais-toi"]
+    ouvrir=["ouvrir","peux-tu ouvrir"]
+    cherche=["cherche sur youtube","cherche sur google","cherche sur wikipedia","cherche","peux-tu faire cette recherche"]
+    calculs=["calcule la somme de","calcule la différence de","calcule le produit de ","calcule","fais moi l'opération","calcule"]
+    actif=True
+    while actif:
+        if (entree:= reconnaissance()) is not None:
+            for x in range(len(fermer)):
+                if fermer[x] in entree.lower():
+                    assistant_voix("A la prochaine monsieur")
+                    actif=False
+            for x in range(len(ouvrir)):
+                if ouvrir[x] in entree.lower():
+                    application(entree)
+                    break
+            for x in range(len(cherche)):
+                if cherche[x] in entree.lower():
+
+                    sur_le_net(entree)
+                    break
+            for x in range(len(calculs)):
+                if calculs[x] in entree.lower():
+                    calcul(entree)
+                    break
+main()
 
