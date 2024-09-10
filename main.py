@@ -20,6 +20,8 @@ def assistant_voix(sortie):
         print("A.I : "+sortie)
         voix.say(sortie)
         voix.runAndWait()
+
+
 def internet():
     try:
         urlopen("https://www.google.com",timeout=1)
@@ -112,7 +114,7 @@ def sur_le_net(entree):
                 if len(recherche)!=0:
                     assistant_voix("Recherche sur Google")
                     webbrowser.open("http://www.google.com/search?q="+"+".join(recherche),new=2)
-            elif "cherhe" in entree.lower():
+            elif "cherche" in entree.lower():
                 indx=entree.lower().split().index("cherche!")
                 recherche=entree.lower().split()[indx+1:]
                 if len(recherche)!=0:
